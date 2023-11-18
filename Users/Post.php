@@ -8,16 +8,17 @@ if (isset($_POST['submit']))
     $Name = htmlentities($_POST['Name'], ENT_QUOTES);
     $Password = htmlentities($_POST['Password'], ENT_QUOTES);
     $Email = htmlentities($_POST['Email'], ENT_QUOTES);
+    $isAdmin = htmlentities($_POST['isAdmin'], ENT_QUOTES);
 // verificam daca sunt completate
-    if ($Name == '' || $Password == ''||$Email=='')
+    if ($Name == '' || $Password == ''||$Email=='' ||$isAdmin=='')
     {
 // daca sunt goale se afiseaza un mesaj
         $error = 'ERROR: Campuri goale!';
     } else {
 // insert
-        if ($stmt = $mysqli->prepare("INSERT into users (Name, Password, Email) VALUES (?, ?, ?)"))
+        if ($stmt = $mysqli->prepare("INSERT into users (Name, Password, Email, isAdmin) VALUES (?, ?, ?, ?)"))
         {
-            $stmt->bind_param("sss", $Name, $Password,$Email);
+            $stmt->bind_param("sssb", $Name, $Password, $Email, $isAdmin);
             $stmt->execute();
             $stmt->close();
         }

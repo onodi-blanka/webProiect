@@ -19,7 +19,7 @@ if ($result = $mysqli->query("SELECT * FROM users ORDER BY ID "))
         echo "<table border='1' cellpadding='10'>";
 // antetul tabelului
         echo "<tr><th>ID</th><th> Name</th><th>Password
-</th><th>Email</th>><th></th><th></th></tr>";
+</th><th>Email</th><th>isAdmin</th><th></th><th></th></tr>";
         while ($row = $result->fetch_object())
         {
 // definirea unei linii pt fiecare inregistrare
@@ -28,6 +28,7 @@ if ($result = $mysqli->query("SELECT * FROM users ORDER BY ID "))
             echo "<td>" . $row->Name . "</td>";
             echo "<td>" . $row->Password . "</td>";
             echo "<td>" . $row->Email . "</td>";
+            echo "<td>" . $row->isAdmin . "</td>";
             echo "<td><a href='Update.php?ID=" . $row->ID . "'>Modificare</a></td>";
             echo "<td><a href='Delete.php?ID=" .$row->ID . "'>Stergere</a></td>";
             echo "</tr>";

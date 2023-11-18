@@ -13,15 +13,16 @@ if (!empty($_POST['ID']))
         $Name = htmlentities($_POST['Name'], ENT_QUOTES);
         $Password = htmlentities($_POST['Password'], ENT_QUOTES);
         $Email = htmlentities($_POST['Email'], ENT_QUOTES);
+        $isAdmin = htmlentities($_POST['isAdmin'], ENT_QUOTES);
 // verificam daca numele, prenumele, an si grupa nu sunt goale
-        if ($Name == '' || $Password == ''||$Email=='')
+        if ($Name == '' || $Password == ''||$Email=='' ||$isAdmin=='')
         { // daca sunt goale afisam mesaj de eroare
             echo "<div> ERROR: Completati campurile obligatorii!</div>";
         }else
         { // daca nu sunt erori se face update name, code, image, price, descriere, categorie
-            if ($stmt = $mysqli->prepare("INSERT into users (Name, Password, Email) VALUES (?, ?, ?)"))
+            if ($stmt = $mysqli->prepare("INSERT into users (Name, Password, Email, isAdmin) VALUES (?, ?, ?, ?)"))
             {
-                $stmt->bind_param("sss", $Name, $Password,$Email);
+                $stmt->bind_param("sssb", $Name, $Password, $Email, $isAdmin);
                 $stmt->execute();
                 $stmt->close();
             }// mesaj de eroare in caz ca nu se poate face update
