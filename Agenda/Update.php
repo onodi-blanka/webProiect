@@ -21,8 +21,8 @@ if (!empty($_POST['ID']))
             echo "<div> ERROR: Completati campurile obligatorii!</div>";
         }else
         { // daca nu sunt erori se face update name, code, image, price, descriere, categorie
-            if ($stmt = $mysqli->prepare("UPDATE agenda SET (EventID, StartTime, EndTime, ActivityDetails, SpeakerID) VALUES (?, ?, ?, ?, ?)"))
-            {
+            if ($stmt = $mysqli->prepare("UPDATE agenda SET EventID=?, StartTime=?, EndTime=?, ActivityDetails=?, SpeakerID=? WHERE ID='".$ID."'")) {
+
                 $stmt->bind_param("iddsi", $EventID, $StartTime,$EndTime,$ActivityDetails,$SpeakerID);
                 $stmt->execute();
                 $stmt->close();

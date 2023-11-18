@@ -23,7 +23,7 @@ if (!empty($_POST['ID']))
             echo "<div> ERROR: Completati campurile obligatorii!</div>";
         }else
         { // daca nu sunt erori se face update name, code, image, price, descriere, categorie
-            if ($stmt = $mysqli->prepare("UPDATE  event SET (Name, Date, Location, Tickets, ContactName, ContactPhone, ContactEmail) VALUES (?, ?, ?, ?, ?, ?, ?)")) {
+            if ($stmt = $mysqli->prepare("UPDATE event SET Name=?, Date=?, Location=?, Tickets=?, ContactName=?, ContactPhone=?, ContactEmail=? WHERE ID='" . $ID . "'")) {
                 $stmt->bind_param("sssisss", $Name, $Date, $Location, $Tickets, $ContactName, $ContactPhone, $ContactEmail);
                 $stmt->execute();
                 $stmt->close();

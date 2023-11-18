@@ -20,7 +20,7 @@ if (!empty($_POST['ID']))
             echo "<div> ERROR: Completati campurile obligatorii!</div>";
         }else
         { // daca nu sunt erori se face update name, code, image, price, descriere, categorie
-            if ($stmt = $mysqli->prepare("INSERT into users (Name, Password, Email, isAdmin) VALUES (?, ?, ?, ?)"))
+            if ($stmt = $mysqli->prepare("UPDATE users SET Name=?, Password=?, Email=?, isAdmin=? WHERE ID='" . $ID . "'"))
             {
                 $stmt->bind_param("sssb", $Name, $Password, $Email, $isAdmin);
                 $stmt->execute();

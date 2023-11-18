@@ -19,7 +19,7 @@ if (!empty($_POST['ID']))
             echo "<div> ERROR: Completati campurile obligatorii!</div>";
         }else
         { // daca nu sunt erori se face update name, code, image, price, descriere, categorie
-            if ($stmt = $mysqli->prepare("UPDATE partnerssponsors SET (Name, Type, Details) VALUES (?, ?, ?)")) {
+            if ($stmt = $mysqli->prepare("UPDATE partnerssponsors SET Name=?, Type=?, Details=? WHERE ID='" . $ID . "'")) {
                 $stmt->bind_param("sst", $Name, $Type, $Details);
                 $stmt->execute();
                 $stmt->close();
