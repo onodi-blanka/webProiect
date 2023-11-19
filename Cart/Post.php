@@ -1,9 +1,7 @@
 <?php
-require_once "DBController.php";
 require_once "Cart.php";
 
-$db = new DBController();
-$cart = new Cart($db);
+$cart = new Cart();
 $error = '';
 
 if (isset($_POST['submit'])) {

@@ -1,9 +1,7 @@
 <?php
-require_once "DBController.php";
 require_once "Cart.php";
-
-$db = new DBController();
-$cart = new Cart($db);
+session_start();
+$cart = new Cart();
 
 ?>
 
@@ -18,7 +16,7 @@ $cart = new Cart($db);
 <p><b>Toate înregistrările din Cart</b></p>
 
 <?php
-$UserID = $_SESSION['loggedin'];
+$UserID = $_SESSION['ID'];
 $items = $cart->getCartItems($UserID); // Înlocuiește $userId cu ID-ul utilizatorului actual
 
 if (!empty($items)) {

@@ -20,13 +20,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             // Verificați parola
             if (password_verify($password, $user['Password'])) {
+
                 $_SESSION['loggedin'] = true;
                 $_SESSION['username'] = $username;
                 $_SESSION['ID'] = $user['ID'];
                 $_SESSION['isAdmin'] = $user['isAdmin'];
 
-                header("location: public/index.html");
+//                header("location: Dashboard/public/index.html");
+                header("location: Cart/Get.php");
             } else {
+                echo "<p>am ajuns aici</p>";
                 echo "Parolă incorectă.";
             }
         } else {

@@ -1,9 +1,7 @@
 <?php
-require_once "../DBController.php";
 require_once "../Cart.php";
 
-$db = new DBController();
-$cart = new Cart($db);
+$cart = new Cart();
 
 if (isset($_GET['ID']) && is_numeric($_GET['ID'])) {
     $ID = $_GET['ID'];
