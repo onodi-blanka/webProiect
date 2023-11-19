@@ -1,6 +1,6 @@
 <?php
 global $mysqli;
-include("../ConnectDB.php");
+include("../DBController.php");
 $error='';
 if (isset($_POST['submit']))
 {

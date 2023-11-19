@@ -1,5 +1,9 @@
 <?php
-include("../ConnectDB.php");
+require_once "DBController.php";
+require_once "Cart.php";
+
+$db = new DBController();
+$cart = new Cart($db);
 $error = '';
 
 if (!empty($_POST['ID'])) {
@@ -13,13 +17,8 @@ if (!empty($_POST['ID'])) {
             if ($UserID == '' || $EventID == '' || $NumberOfTickets == '') {
                 echo "<div>ERROR: Completati campurile obligatorii!</div>";
             } else {
-                if ($stmt = $mysqli->prepare("UPDATE cart SET UserID=?,EventID=?,NumberOfTickets=? WHERE id='".$ID."'")){
-                    $stmt->bind_param("iiii", $UserID, $EventID, $NumberOfTickets);
-                    $stmt->execute();
-                    $stmt->close();
-                } else {
-                    echo "ERROR: nu se poate executa update.";
-                }
+
+                $cart->updateCart();
             }
         } else {
             echo "id incorect!";

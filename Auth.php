@@ -1,18 +1,16 @@
 <?php
-// Începem o nouă sesiune sau continuam una existentă
-global $mysqli;
 session_start();
 
-// Verificam dacă formularul a fost trimis
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    include 'ConnectDB.php';
+require_once 'DBController.php';
 
+$db = new DBController();
+$conn = DBController::getConnection();
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    // Query pentru a verifica dacă utilizatorul există în baza de date
-
-    if ($stmt = $mysqli->prepare("SELECT * FROM users WHERE Name = ?")) {
+    if ($stmt = $conn->prepare("SELECT * FROM users WHERE Name = ?")) {
         $stmt->bind_param("s", $username);
         $stmt->execute();
         $result = $stmt->get_result();
@@ -21,28 +19,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $user = $result->fetch_assoc();
 
             // Verificați parola
-            //  if (password_verify($password, $user['Password'])) {
-            if ($password == $user['Password']) {
-                // Parola este corectă, inițiați datele sesiunii
+            if (password_verify($password, $user['Password'])) {
                 $_SESSION['loggedin'] = true;
                 $_SESSION['username'] = $username;
-                $_SESSION['ID'] = $user['id'];
+                $_SESSION['ID'] = $user['ID'];
+                $_SESSION['isAdmin'] = $user['isAdmin'];
 
-                // Redirecționați utilizatorul către o pagină protejată
-                header("location: https://www.google.com");
+                header("location: public/index.html");
             } else {
-                echo $password;
-                echo 'chipmunk';
-                echo $user['Password'];
                 echo "Parolă incorectă.";
             }
         } else {
             echo "Nume utilizator incorect.";
         }
-
         $stmt->close();
     }
-    $mysqli->close();
 }
 ?>
+
 

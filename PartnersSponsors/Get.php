@@ -9,7 +9,7 @@
 <p><b>Toate inregistrarile din partnerssponsors</b</p>
 <?php
 // connectare bazadedate
-include("../ConnectDB.php");
+include("../DBController.php");
 // se preiau inregistrarile din baza de date
 if ($result = $mysqli->query("SELECT * FROM partnerssponsors ORDER BY ID "))
 { // Afisare inregistrari pe ecran

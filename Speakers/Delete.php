@@ -1,7 +1,7 @@
 <?php
 // conectare la baza de date database
 global $mysqli;
-include("../ConnectDB.php");
+include("../DBController.php");
 // se verifica daca id a fost primit
 if (isset($_GET['ID']) && is_numeric($_GET['ID']))
 {

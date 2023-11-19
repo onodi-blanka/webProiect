@@ -1,5 +1,9 @@
 <?php
-include("../ConnectDB.php");
+require_once "DBController.php";
+require_once "Cart.php";
+
+$db = new DBController();
+$cart = new Cart($db);
 $error = '';
 
 if (isset($_POST['submit'])) {
@@ -10,28 +14,19 @@ if (isset($_POST['submit'])) {
     if ($UserID == '' || $EventID == '' || $NumberOfTickets == '') {
         $error = 'ERROR: Campuri goale!';
     } else {
-        // Începeți tranzacția
-        $mysqli->begin_transaction();
+        $db->begin_transaction();
 
         try {
-            // Inserare în Cart
-            if ($stmt = $mysqli->prepare("INSERT INTO cart (UserID, EventID, NumberOfTickets) VALUES (?, ?, ?)")) {
-                $stmt->bind_param("iii", $UserID, $EventID, $NumberOfTickets);
-                $stmt->execute();
-                $stmt->close();
-            } else {
-                throw new Exception("Nu se poate executa insert.");
-            }
+            $cart->addToCart($UserID, $EventID, $NumberOfTickets);
 
-            // Actualizare Event
-            if ($stmt = $mysqli->prepare("UPDATE event SET Tickets = Tickets - ? WHERE ID = ?")) {
+            if ($stmt = $db->prepare("UPDATE event SET Tickets = Tickets - ? WHERE ID = ?")) {
                 $stmt->bind_param("ii", $NumberOfTickets, $EventID);
                 $stmt->execute();
                 $stmt->close();
 
-                if ($mysqli->affected_rows > 0) {
+                if ($db->affected_rows > 0) {
                     // Confirmare tranzacție
-                    $mysqli->commit();
+                    $db->commit();
                     echo "Achiziție realizată cu succes!";
                 } else {
                     throw new Exception("Nu s-au putut actualiza biletele.");
@@ -40,12 +35,11 @@ if (isset($_POST['submit'])) {
                 throw new Exception("Nu se poate executa update pe Event.");
             }
         } catch (Exception $e) {
-            // Rollback în caz de eroare
-            $mysqli->rollback();
+            $db->rollback();
             echo "Eroare la achiziție: " . $e->getMessage();
         }
     }
 }
-$mysqli->close();
+$db->close();
 ?>
 

@@ -1,18 +1,20 @@
 <?php
-include("../ConnectDB.php");
+require_once "../DBController.php";
+require_once "../Cart.php";
+
+$db = new DBController();
+$cart = new Cart($db);
 
 if (isset($_GET['ID']) && is_numeric($_GET['ID'])) {
     $ID = $_GET['ID'];
 
-    if ($stmt = $mysqli->prepare("DELETE FROM cart WHERE ID = ? LIMIT 1")) {
-        $stmt->bind_param("i", $ID);
-        $stmt->execute();
-        $stmt->close();
-    } else {
-        echo "ERROR: Nu se poate executa delete.";
-    }
-    $mysqli->close();
+    $cart->removeFromCart($ID);
+
     echo "<div>Inregistrarea a fost stearsa!</div>";
+} else {
+    echo "<div>ID invalid sau lipsă.</div>";
 }
-echo "<p><a href=\"Get.php\">Index</a></p>";
+
+echo "<p><a href=\"Get.php\">Înapoi la lista de articole</a></p>";
 ?>
+
