@@ -1,6 +1,6 @@
 <?php // connectare bazadedate
 global $mysqli;
-include("../DBController.php");
+include("../Conectare.php");
 //Modificare datelor
 // se preia id din pagina vizualizare
 $error='';

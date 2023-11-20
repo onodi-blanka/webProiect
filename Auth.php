@@ -26,7 +26,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['ID'] = $user['ID'];
                 $_SESSION['isAdmin'] = $user['isAdmin'];
 
-//                header("location: Dashboard/public/index.html");
                 header("location: Cart/Get.php");
             } else {
                 echo "<p>am ajuns aici</p>";

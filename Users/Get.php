@@ -9,19 +9,16 @@
 <p><b>Toate inregistrarile din users</b</p>
 <?php
 // connectare bazadedate
-include("../DBController.php");
+include("../Conectare.php");
 // se preiau inregistrarile din baza de date
-if ($result = $mysqli->query("SELECT * FROM users ORDER BY ID "))
-{ // Afisare inregistrari pe ecran
-    if ($result->num_rows > 0)
-    {
+if ($result = $mysqli->query("SELECT * FROM users ORDER BY ID ")) { // Afisare inregistrari pe ecran
+    if ($result->num_rows > 0) {
 // afisarea inregistrarilor intr-o table
         echo "<table border='1' cellpadding='10'>";
 // antetul tabelului
         echo "<tr><th>ID</th><th> Name</th><th>Password
 </th><th>Email</th><th>isAdmin</th><th></th><th></th></tr>";
-        while ($row = $result->fetch_object())
-        {
+        while ($row = $result->fetch_object()) {
 // definirea unei linii pt fiecare inregistrare
             echo "<tr>";
             echo "<td>" . $row->ID . "</td>";
@@ -30,20 +27,18 @@ if ($result = $mysqli->query("SELECT * FROM users ORDER BY ID "))
             echo "<td>" . $row->Email . "</td>";
             echo "<td>" . $row->isAdmin . "</td>";
             echo "<td><a href='Update.php?ID=" . $row->ID . "'>Modificare</a></td>";
-            echo "<td><a href='Delete.php?ID=" .$row->ID . "'>Stergere</a></td>";
+            echo "<td><a href='Delete.php?ID=" . $row->ID . "'>Stergere</a></td>";
             echo "</tr>";
         }
         echo "</table>";
-    }
-// daca nu sunt inregistrari se afiseaza un rezultat de eroare
-    else
-    {
+    } // daca nu sunt inregistrari se afiseaza un rezultat de eroare
+    else {
         echo "<p>Nu sunt inregistrari in tabela!</p>";
     }
+} // eroare in caz de insucces in interogare
+else {
+    echo "Error: " . $mysqli->error();
 }
-// eroare in caz de insucces in interogare
-else
-{ echo "Error: " . $mysqli->error(); }
 // se inchide
 $mysqli->close();
 ?>

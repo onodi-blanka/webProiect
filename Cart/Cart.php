@@ -1,98 +1,94 @@
 <?php
 require_once "../DBController.php";
+
 class Cart
 {
     private $db;
+
     public function __construct()
     {
         $this->db = new DBController();
     }
 
-    public function addToCart($userId, $eventId, $numberOfTickets)
+    public function addToCart($userId, $eventId)
     {
         $query = "INSERT INTO cart (UserID, EventID, NumberOfTickets) VALUES (?, ?, ?)";
-        if ($stmt = $this->db->prepare($query)) {
-            $stmt->bind_param("iii", $userId, $eventId, $numberOfTickets);
-            $stmt->execute();
-            $stmt->close();
-        } else {
+        $stmt = $this->db->getConnection()->prepare($query);
+        if ($stmt === false) {
             throw new Exception("Nu se poate executa insert.");
         }
+
+        $stmt->bind_param("iii", $userId, $eventId);
+        if (!$stmt->execute()) {
+            throw new Exception($stmt->error);
+        }
+        $stmt->close();
     }
 
-    //fara update de cart daca iei un singur bilet
     public function updateCart($cartId, $numberOfTickets)
     {
         $query = "UPDATE cart SET NumberOfTickets = ? WHERE ID = ?";
-        if ($stmt = $this->db->prepare($query)) {
-            $stmt->bind_param("ii", $numberOfTickets, $cartId);
-            $stmt->execute();
-            $stmt->close();
-        } else {
-            echo "ERROR: nu se poate executa update.";
+        $stmt = $this->db->getConnection()->prepare($query);
+        if ($stmt === false) {
+            throw new Exception("ERROR: nu se poate executa update.");
         }
-    }
 
+        $stmt->bind_param("ii", $numberOfTickets, $cartId);
+        if (!$stmt->execute()) {
+            throw new Exception($stmt->error);
+        }
+        $stmt->close();
+    }
 
     public function removeFromCart($cartId)
     {
         $query = "DELETE FROM cart WHERE ID = ?";
-        $stmt = $this->db->prepare($query);
+        $stmt = $this->db->getConnection()->prepare($query);
+        if ($stmt === false) {
+            throw new Exception("ERROR: nu se poate executa delete.");
+        }
+
         $stmt->bind_param("i", $cartId);
-        $stmt->execute();
+        if (!$stmt->execute()) {
+            throw new Exception($stmt->error);
+        }
         $stmt->close();
     }
 
-
     public function getCartItems($userID)
     {
-        echo "<p>am ajuns aici $userID</p>";
         $query = "SELECT * FROM cart WHERE UserID = ?";
-        $stmt = $this->db->prepare($query);
+        $stmt = $this->db->getConnection()->prepare($query);
+        if ($stmt === false) {
+            throw new Exception("ERROR: nu se poate pregati interogarea.");
+        }
+
         $stmt->bind_param("i", $userID);
-        $stmt->execute();
+        if (!$stmt->execute()) {
+            throw new Exception($stmt->error);
+        }
         $result = $stmt->get_result();
         $items = $result->fetch_all(MYSQLI_ASSOC);
         $stmt->close();
         return $items;
     }
 
-//    public function getCartItems($userID)
-//    {
-//        echo "<p>am ajuns aici $userID</p>";
-//        $query = "SELECT * FROM cart WHERE UserID = ?";
-//        if ($stmt = $this->db->prepare($query)) {
-//            $stmt->bind_param("i", $userID);
-//            if ($stmt->execute()) {
-//                $result = $stmt->get_result();
-//                $items = $result->fetch_all(MYSQLI_ASSOC);
-//                $stmt->close();
-//                return $items;
-//            } else {
-//                // Handle execution error
-//                $stmt->close();
-//                throw new Exception('Error executing the statement');
-//            }
-//        } else {
-//            // Handle preparation error
-//            throw new Exception('Error preparing the statement');
-//        }
-//    }
-
-
-    // function that gets the cart of the current user
     public function getCartUser($userID)
     {
-        $query = "SELECT FROM cart WHERE UserID = ?";
-        $stmt = $this->db->prepare($query);
+        $query = "SELECT * FROM cart WHERE UserID = ?";
+        $stmt = $this->db->getConnection()->prepare($query);
+        if ($stmt === false) {
+            throw new Exception("ERROR: nu se poate pregati interogarea.");
+        }
+
         $stmt->bind_param("i", $userID);
-        $stmt->execute();
+        if (!$stmt->execute()) {
+            throw new Exception($stmt->error);
+        }
         $result = $stmt->get_result();
-        $item = $result->fetch(MYSQLI_ASSOC);
+        $item = $result->fetch_assoc();
         $stmt->close();
-        echo "<p>$item</p>";
         return $item;
     }
 }
-
 ?>

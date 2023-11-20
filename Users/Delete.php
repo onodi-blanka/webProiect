@@ -1,7 +1,7 @@
 <?php
 // conectare la baza de date database
 global $mysqli;
-include("../DBController.php");
+include("../Conectare.php");
 // se verifica daca id a fost primit
 if (isset($_GET['ID']) && is_numeric($_GET['ID']))
 {
@@ -21,5 +21,5 @@ if (isset($_GET['ID']) && is_numeric($_GET['ID']))
     $mysqli->close();
     echo "<div>Inregistrarea a fost stearsa!!!!</div>";
 }
-echo "<p><a href=\"Get.php\">Index</a></p>";
+echo "<p><a href=\"javascript:history.back()\">Index</a></p>";
 ?>

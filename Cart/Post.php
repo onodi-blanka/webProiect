@@ -1,6 +1,6 @@
 <?php
 require_once "Cart.php";
-
+$db = new DBController();
 $cart = new Cart();
 $error = '';
 
@@ -9,22 +9,22 @@ if (isset($_POST['submit'])) {
     $EventID = htmlentities($_POST['EventID'], ENT_QUOTES);
     $NumberOfTickets = htmlentities($_POST['NumberOfTickets'], ENT_QUOTES);
 
-    if ($UserID == '' || $EventID == '' || $NumberOfTickets == '') {
+    if ($UserID == '' || $EventID == '') {
         $error = 'ERROR: Campuri goale!';
     } else {
-        $db->begin_transaction();
+        $db->getConnection()->begin_transaction();
 
         try {
-            $cart->addToCart($UserID, $EventID, $NumberOfTickets);
+            $cart->addToCart($UserID, $EventID);
 
-            if ($stmt = $db->prepare("UPDATE event SET Tickets = Tickets - ? WHERE ID = ?")) {
+            if ($stmt = $db->getConnection()->prepare("UPDATE event SET Tickets = Tickets - 1 WHERE ID = ?")) {
                 $stmt->bind_param("ii", $NumberOfTickets, $EventID);
                 $stmt->execute();
                 $stmt->close();
 
-                if ($db->affected_rows > 0) {
+                if ($db->getConnection()->affected_rows > 0) {
                     // Confirmare tranzacție
-                    $db->commit();
+                    $db->getConnection()->commit();
                     echo "Achiziție realizată cu succes!";
                 } else {
                     throw new Exception("Nu s-au putut actualiza biletele.");
@@ -33,11 +33,11 @@ if (isset($_POST['submit'])) {
                 throw new Exception("Nu se poate executa update pe Event.");
             }
         } catch (Exception $e) {
-            $db->rollback();
+            $db->getConnection()->rollback();
             echo "Eroare la achiziție: " . $e->getMessage();
         }
     }
 }
-$db->close();
+$db->getConnection()->close();
 ?>
 

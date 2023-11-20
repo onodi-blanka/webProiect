@@ -1,0 +1,156 @@
+body {
+    margin-left: 15px;
+    margin-right: 15px;
+  }
+
+  nav {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+  }
+  
+  .nav-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto ;
+    
+  }
+  
+  .logo {
+    color: white;
+    font-size: 24px;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+  
+  .nav-list {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+  }
+  
+  .nav-list li {
+    margin-right: 20px;
+  }
+  
+  .nav-list a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  
+  .search-bar {
+    display: flex;
+  }
+  
+  .search-bar input {
+    padding: 8px;
+  }
+  
+  .search-bar button {
+    padding: 8px;
+    background-color:  rgba(233, 201, 86, 0.574);
+    color: black;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .main-content {
+    text-align: center;
+    padding: 150px 0;
+    color: white;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+  
+  .center-text {
+    max-width: auto;
+    margin: 0 auto;
+    color: white;
+  }
+  
+  h1 {
+    font-size: 25px;
+    margin: 0;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+  }
+
+  p {
+    font-size: 50px;
+    color: white;
+  }
+
+  .dynamic-text {
+    color: yellow;
+    font-size: 50px;
+  }
+
+
+
+  .event-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 10px;
+    background-color: whitesmoke;
+  }
+  
+  .event {
+    position: relative;
+    overflow: hidden;
+    margin: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .event:hover {
+    transform: scale(1.05);
+  }
+  
+  .event img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #ddd;
+  }
+  
+  .event-details {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    padding: 10px;
+    color: white;
+  }
+  
+  .event-details p {
+    margin: 5px 0;
+    font-size: 12px; /* Ajustat la dimensiunea dorită */
+  }
+  
+  .event-details .event-date,
+  .event-details .event-location {
+    display: block;
+  }
+  
+  .event-details .book-ticket {
+    display: none;
+    color: #4CAF50;
+    font-weight: bold;
+    font-size: 14px; 
+    margin-top: 8px;
+  }
+  
+  .event:hover .event-details .event-date,
+  .event:hover .event-details .event-location {
+    display: none; 
+  }
+  
+  .event:hover .event-details .book-ticket {
+    display: block; 
+  }
+  
