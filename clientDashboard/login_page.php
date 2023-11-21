@@ -26,7 +26,7 @@
     </div>
   </nav>
     <div class="login-container">
-    <form class="login-form">
+    <form class="login-form" action="../Auth.php" method="post">
                 <h2>Login</h2>
                 <hr>
                 <label for="username">Username:</label>
@@ -48,7 +48,7 @@
             </form>
     </div>
             <div>
-                 <span class="password">Don't have an account? <a href="register_page.php"><br>Create one here.</a></br></span>
+                 <span class="password">Don't have an account? <a href="../Registration.html"><br>Create one here.</a></br></span>
             </div>
 </body>
 </html> 

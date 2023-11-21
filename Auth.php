@@ -1,6 +1,7 @@
 <?php
 session_start();
 
+
 require_once 'DBController.php';
 
 $db = new DBController();
@@ -19,16 +20,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $user = $result->fetch_assoc();
 
             // Verificați parola
-            if (password_verify($password, $user['Password'])) {
-
+            if ($password == $user['Password']) {
                 $_SESSION['loggedin'] = true;
                 $_SESSION['username'] = $username;
                 $_SESSION['ID'] = $user['ID'];
                 $_SESSION['isAdmin'] = $user['isAdmin'];
 
-                header("location: Cart/Get.php");
+                header("Location: clientDashboard/index.php");
             } else {
-                echo "<p>am ajuns aici</p>";
                 echo "Parolă incorectă.";
             }
         } else {

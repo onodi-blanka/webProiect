@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2023 at 02:15 PM
+-- Generation Time: Nov 21, 2023 at 11:28 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -41,7 +41,9 @@ CREATE TABLE `agenda` (
 --
 
 INSERT INTO `agenda` (`ID`, `EventID`, `StartTime`, `EndTime`, `ActivityDetails`, `SpeakerID`) VALUES
-    (1, 2, '06:54:00', '10:54:00', 'first activity (coffee break)', 1);
+                                                                                                   (1, 2, '06:54:00', '10:54:00', 'first activity (coffee break)', 1),
+                                                                                                   (3, 7, '13:23:00', '01:23:00', 'first activity (coffee break)', 1),
+                                                                                                   (4, 7, '19:24:00', '02:24:00', 'second activity (coffee break)', 3);
 
 -- --------------------------------------------------------
 
@@ -78,9 +80,10 @@ CREATE TABLE `event` (
 --
 
 INSERT INTO `event` (`ID`, `Name`, `Date`, `Location`, `Tickets`, `ContactName`, `ContactPhone`, `ContactEmail`) VALUES
-                                                                                                                     (1, 'Test', NULL, 'wadw', NULL, 'aawd', '111121', 'esafdc'),
+                                                                                                                     (1, 'Test', '2023-11-01', 'wadw', 1, 'aawd', '111121', 'esafdc'),
                                                                                                                      (2, 'My new event', '2024-10-30', 'Romania', 300, 'Blanka', '11114141', 'blanka@gmail.com'),
-                                                                                                                     (6, 'aasd', '1111-11-11', 'laksd', 21, 'Blanka', '11114141', 'a@a');
+                                                                                                                     (6, 'aasd', '1111-11-11', 'laksd', 21, 'Blanka', '11114141', 'a@a'),
+                                                                                                                     (7, 'My new event at 1:30 in the morning', '2023-11-21', 'Romania', 1131231, 'asdasd', '11114141', 'a@a');
 
 -- --------------------------------------------------------
 
@@ -100,7 +103,10 @@ CREATE TABLE `eventpartnerssponsors` (
 
 INSERT INTO `eventpartnerssponsors` (`ID`, `EventID`, `PartnerSponsorID`) VALUES
                                                                               (1, 2, 1),
-                                                                              (2, 1, 2);
+                                                                              (2, 1, 2),
+                                                                              (6, 7, 1),
+                                                                              (7, 7, 3),
+                                                                              (8, 7, 4);
 
 -- --------------------------------------------------------
 
@@ -121,7 +127,9 @@ CREATE TABLE `partnerssponsors` (
 
 INSERT INTO `partnerssponsors` (`ID`, `Name`, `Type`, `Details`) VALUES
                                                                      (1, 'partner1', 'Partner', 'the first partner'),
-                                                                     (2, 'sponsor1', 'Sponsor', 'the first sponsor');
+                                                                     (2, 'sponsor1', 'Sponsor', 'the first sponsor'),
+                                                                     (3, 'Marlboro', 'Partner', 'ethical company'),
+                                                                     (4, 'MJFF', 'Sponsor', 'Good ');
 
 -- --------------------------------------------------------
 
@@ -140,7 +148,9 @@ CREATE TABLE `speakers` (
 --
 
 INSERT INTO `speakers` (`ID`, `Name`, `Details`) VALUES
-    (1, 'the first speaker', 'wow it works');
+                                                     (1, 'the first speaker', 'wow it works'),
+                                                     (2, 'speaker 2', 'he good'),
+                                                     (3, 'bad speaker', 'he bad');
 
 -- --------------------------------------------------------
 
@@ -175,7 +185,8 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`ID`, `Name`, `Password`, `Email`, `isAdmin`) VALUES
                                                                        (1, 'Blanka', '11111', 'onodi@gmail.com', 1),
-                                                                       (6, 'blanka2', '11111', 'blanka@b.com', 0);
+                                                                       (6, 'blanka2', '11111', 'blanka@b.com', 0),
+                                                                       (7, 'Iris', '11111', 'iris@gmail.com', 0);
 
 --
 -- Indexes for dumped tables
@@ -245,7 +256,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `agenda`
 --
 ALTER TABLE `agenda`
-    MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+    MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `cart`
@@ -257,25 +268,25 @@ ALTER TABLE `cart`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-    MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+    MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `eventpartnerssponsors`
 --
 ALTER TABLE `eventpartnerssponsors`
-    MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+    MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `partnerssponsors`
 --
 ALTER TABLE `partnerssponsors`
-    MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+    MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `speakers`
 --
 ALTER TABLE `speakers`
-    MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+    MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tickets`
@@ -287,7 +298,7 @@ ALTER TABLE `tickets`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-    MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+    MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- Constraints for dumped tables

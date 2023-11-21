@@ -12,7 +12,7 @@ $mysqli = new mysqli($hostname, $username, $password,$db);
 /* se verifica daca s-a realizat conexiunea */
 if(!mysqli_connect_errno())
 {
-    echo 'Connectat la baza de date: '. $db;
+//    echo 'Connectat la baza de date: '. $db;
 // $mysqli->close();
 }
 else
