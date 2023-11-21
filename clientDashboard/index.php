@@ -16,7 +16,6 @@
       <ul class="nav-list">
         <li><a href="#">Home</a></li>
         <li><a href="contact_page.php">Contact Us</a></li>
-        <li><a href="create_event.php">Create Event</a></li>
         <li><a href="login_page.php">Login/Register</a></li>
         <li><a href="cart_page.php">My Cart</a></li>
       </ul>
@@ -37,6 +36,32 @@
 <p>Upcoming Events</p>
 
 <div class="event-container">
+
+<!-- 
+  
+    include('../Events/Get.php');
+    $query_evenimente = "SELECT E.ID, E.Tickets, E.Name, E.Date, E.Location FROM Events ORDER BY Date ASC"; // adaptează interogarea la structura tabelului tău
+    $result_evenimente = $mysqli->query($query_evenimente);
+
+
+    if ($result->num_rows > 0) {
+      while ($row = $result->fetch_object()) {
+        echo "<div class='event'>";
+        echo "<a href='event_page.php'>";
+        //echo "<img src='imagini/event1.jpg' alt='Event 1'>";
+        echo "<div class='event-details'>";
+        
+        echo "<p class='event-price'>$" . $row->Tickets . "</p>";
+        echo "<p class='event-name'>" . $row->Name . "</p>";
+        echo "<p class='event-date'>Date: " . $row->Date . "</p>";
+        echo "<p class='event-location'>Location: " . $row->Location . "</p>";
+        echo "<p class='book-ticket'>Book ticket</p>";
+        echo "</div></a></div>";
+      }
+    } else {
+      echo "<p>Nu există evenimente.</p>";
+    } -->
+
   <div class="event">
   <a href="event_page.php">
       <img src="imagini/event1.jpg" alt="Event 1">

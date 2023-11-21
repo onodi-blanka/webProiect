@@ -13,7 +13,6 @@
       <ul class="nav-list">
         <li><a href="index.php">Home</a></li>
         <li><a href="#">Contact Us</a></li>
-        <li><a href="create_event.php">Create Event</a></li>
         <li><a href="login_page.php">Login/Register</a></li>
         <li><a href="cart_page.php">My Cart</a></li>
       </ul>

@@ -13,7 +13,6 @@
       <ul class="nav-list">
         <li><a href="index.php">Home</a></li>
         <li><a href="contact_page.php">Contact Us</a></li>
-        <li><a href="create_event.php">Create Event</a></li>
         <li><a href="login_page.php">Login/Register</a></li>
         <li><a href="cart_page.php">My Cart</a></li>
       </ul>
@@ -24,20 +23,20 @@
     </div>
   </nav>
 
-<form action="action_page.php">
+<form action="../Registration.php" method="post">
   <div class="register-container">
     <h1>Register</h1>
     <p>Please fill in this form to create an account.</p>
     <hr>
+    <label for="username"><b>Username</b></label>
+    <input type="text" placeholder="Enter username" name="username" id="username" required>
 
     <label for="email"><b>Email</b></label>
     <input type="text" placeholder="Enter Email" name="email" id="email" required>
 
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" id="psw" required>
+    <label for="password"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="password" id="password" required>
 
-    <label for="psw-repeat"><b>Repeat Password</b></label>
-    <input type="password" placeholder="Repeat Password" name="psw-repeat" id="psw-repeat" required>
     <hr>
 
     <p>By creating an account you agree to our <a href="#">Terms & Privacy</a>.</p>

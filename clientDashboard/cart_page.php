@@ -13,7 +13,6 @@
       <ul class="nav-list">
         <li><a href="index.php">Home</a></li>
         <li><a href="contact_page.php">Contact Us</a></li>
-        <li><a href="create_event.php">Create Event</a></li>
         <li><a href="login_page.php">Login/Register</a></li>
         <li><a href="#">My Cart</a></li>
       </ul>
@@ -38,6 +37,7 @@
                     <p>Price: $XX</p>
                     <p>Quantity: X</p>
                     <button class="remove-btn">Remove</button>
+                    <button class="add-btn">Add more</button>
                 </div>
             </div>
         </div>

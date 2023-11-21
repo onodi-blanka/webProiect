@@ -1,9 +1,26 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <link rel="stylesheet" href="clientDashboard/login_style.css" type="text/css">
     <title>Autentificare</title>
 </head>
 <body>
+    <nav>
+        <div class="nav-container">
+          <div class="logo">Royal Ticket</div>
+          <ul class="nav-list">
+            <li><a href="index.php">Home</a></li>
+            <li><a href="contact_page.php">Contact Us</a></li>
+            <li><a href="create_event.php">Create Event</a></li>
+            <li><a href="login_page.php">Login/Register</a></li>
+            <li><a href="cart_page.php">My Cart</a></li>
+          </ul>
+          <div class="search-bar">
+            <input type="text" placeholder="Search">
+            <button type="submit">Search</button>
+          </div>
+        </div>
+      </nav>
 <form action="Auth.php" method="post">
     <label for="username">Nume utilizator:</label>
     <input type="text" id="username" name="username" required><br>

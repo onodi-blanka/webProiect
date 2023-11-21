@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 21, 2023 at 02:15 PM
+-- Generation Time: Nov 20, 2023 at 10:51 PM
 -- Server version: 10.4.28-MariaDB
 -- PHP Version: 8.2.4
 
@@ -79,8 +79,7 @@ CREATE TABLE `event` (
 
 INSERT INTO `event` (`ID`, `Name`, `Date`, `Location`, `Tickets`, `ContactName`, `ContactPhone`, `ContactEmail`) VALUES
                                                                                                                      (1, 'Test', NULL, 'wadw', NULL, 'aawd', '111121', 'esafdc'),
-                                                                                                                     (2, 'My new event', '2024-10-30', 'Romania', 300, 'Blanka', '11114141', 'blanka@gmail.com'),
-                                                                                                                     (6, 'aasd', '1111-11-11', 'laksd', 21, 'Blanka', '11114141', 'a@a');
+                                                                                                                     (2, 'My new event', '2024-10-30', 'Romania', 300, 'Blanka', '11114141', 'blanka@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -194,7 +193,7 @@ ALTER TABLE `agenda`
 --
 ALTER TABLE `cart`
     ADD PRIMARY KEY (`ID`),
-  ADD UNIQUE KEY `UserID` (`UserID`),
+  ADD KEY `UserID` (`UserID`),
   ADD KEY `EventID` (`EventID`);
 
 --
@@ -257,7 +256,7 @@ ALTER TABLE `cart`
 -- AUTO_INCREMENT for table `event`
 --
 ALTER TABLE `event`
-    MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+    MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `eventpartnerssponsors`

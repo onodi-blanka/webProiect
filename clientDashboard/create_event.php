@@ -27,7 +27,7 @@
   </nav>
 
   <div class="container">
-    <form class="create-form">
+    <form action="Events/Post.php" method="post">
                 <h2>Create new event</h2>
                 <label for="eventname">Event Name:</label>
                 <input type="text" placeholder="Enter Name" id="eventname" name="eventname" required>

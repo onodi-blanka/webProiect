@@ -26,7 +26,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $_SESSION['ID'] = $user['ID'];
                 $_SESSION['isAdmin'] = $user['isAdmin'];
 
-                header("location: Cart/Get.php");
+                // header("location: Cart/Get.php");
+                header("location: clientDashboard/index.php");
             } else {
                 echo "<p>am ajuns aici</p>";
                 echo "Parolă incorectă.";

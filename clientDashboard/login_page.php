@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
+ <head> 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
@@ -8,14 +8,13 @@
     <link rel="stylesheet" href="login_style.css">
     <title>Login Page</title>
 </head>
-  <body>
+<body>
   <nav>
     <div class="nav-container">
       <div class="logo">Royal Ticket</div>
       <ul class="nav-list">
         <li><a href="index.php">Home</a></li>
         <li><a href="contact_page.php">Contact Us</a></li>
-        <li><a href="create_event.php">Create Event</a></li>
         <li><a href="login_page.php">Login/Register</a></li>
         <li><a href="cart_page.php">My Cart</a></li>
       </ul>
@@ -25,8 +24,9 @@
       </div>
     </div>
   </nav>
+    
+    <form action="../Auth.php" method="post">
     <div class="login-container">
-    <form class="login-form">
                 <h2>Login</h2>
                 <hr>
                 <label for="username">Username:</label>
@@ -45,10 +45,15 @@
                 <div>
                 <span class="password"><a href="#">Forgot password?</a></span>
                 </div>
-            </form>
-    </div>
+              </div>
+         </form>
+    
             <div>
                  <span class="password">Don't have an account? <a href="register_page.php"><br>Create one here.</a></br></span>
             </div>
+
+            <footer>
+               <p>&copy; 2023 Royal Ticket. Toate drepturile rezervate.</p>
+            </footer>
 </body>
 </html> 
