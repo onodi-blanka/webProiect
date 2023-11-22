@@ -11,20 +11,14 @@
   <body>
   <nav>
     <div class="nav-container">
-      <div class="logo">Royal Ticket</div>
-      <ul class="nav-list">
-        <li><a href="index.php">Home</a></li>
-        <li><a href="contact_page.php">Contact Us</a></li>
-        <li><a href="create_event.php">Create Event</a></li>
-        <li><a href="login_page.php">Login/Register</a></li>
-        <li><a href="cart_page.php">My Cart</a></li>
-      </ul>
-      <div class="search-bar">
-        <input type="text" placeholder="Search">
-        <button type="submit">Search</button>
-      </div>
+        <div class="logo">Royal Ticket</div>
+        <ul class="nav-list">
+            <li><a href="index.php">Home</a></li>
+            <li><a href="login_page.php">Login/Register</a></li>
+            <li><a href="cart_page.php">My Cart</a></li>
+        </ul>
     </div>
-  </nav>
+</nav>
     <div class="login-container">
     <form class="login-form" action="../Auth.php" method="post">
                 <h2>Login</h2>

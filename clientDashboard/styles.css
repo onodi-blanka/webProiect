@@ -1,10 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Montserrat', sans-serif;
+}
+
 body {
-    margin-left: 15px;
-    margin-right: 15px;
-  }
+  background-color: #fff;
+  color: #16151A;
+}
 
   nav {
-    background-color: rgba(0, 0, 0, 0.5);
+    background-color: rgba(0, 0, 0, 1);
     padding: 10px 0;
     position: fixed;
     top: 0;
@@ -24,7 +31,7 @@ body {
   .logo {
     color: white;
     font-size: 24px;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    /* font-family: Georgia, 'Times New Roman', Times, serif; */
   }
   
   .nav-list {
@@ -59,33 +66,44 @@ body {
     border: none;
     cursor: pointer;
   }
+
+.wrapper {
+  margin: auto;
+}
+
+.hero-section {
+  background-image: url(imagini/bkg.jpeg);
+  background-size: cover;
+  display: flex;
+  height: 70vh;
+  align-items: center;
+  justify-content: center;
+}
   
   .main-content {
     text-align: center;
-    padding: 150px 0;
-    color: white;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    padding: 150px 100px;
+    /* font-family: Georgia, 'Times New Roman', Times, serif; */
+
   }
   
   .center-text {
     max-width: auto;
     margin: 0 auto;
-    color: white;
   }
   
   h1 {
     font-size: 25px;
-    margin: 0;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+    margin-bottom: 10px;
+    /* font-family: Georgia, 'Times New Roman', Times, serif; */
   }
 
   p {
     font-size: 50px;
-    color: white;
   }
 
   .dynamic-text {
-    color: yellow;
+    color: #F14105;
     font-size: 50px;
   }
 
@@ -118,13 +136,9 @@ body {
   }
   
   .event-details {
-    position: absolute;
-    bottom: 0;
-    left: 0;
     width: 100%;
-    background-color: rgba(0, 0, 0, 0.7);
+    /* background-color: rgba(0, 0, 0, 0.7); */
     padding: 10px;
-    color: white;
   }
   
   .event-details p {
@@ -154,3 +168,30 @@ body {
     display: block; 
   }
   
+.details-section {
+  padding: 50px 0;
+  width: 1401px;
+  margin: auto;
+}
+
+.details-section p {
+  margin-bottom: 40px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+th {
+  color: #F14105;
+  height: 50px;
+}
+
+td {
+  max-width: 200px;
+  border-top: 0.5px solid #d1d1d1;
+  border-bottom: 0.5px solid #d1d1d1;
+  padding: 10px 20px;
+  text-align: center;
+}
