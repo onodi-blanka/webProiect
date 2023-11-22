@@ -4,8 +4,8 @@ require_once 'DBController.php';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Obținerea datelor din formular
     $username = $_POST['username'];
-    $password = $_POST['password']; // Parola ar trebui să fie hash-uită
-    $email = $_POST['email']; // Asigură-te că adresa de email este validă
+    $password = $_POST['password'];
+    $email = $_POST['email'];
 
     // Validare și curățare date
     if (empty($username) || empty($password) || empty($email)) {
