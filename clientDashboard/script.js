@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var words = ['CONCERTS', 'THEATERS', 'WORKSHOPS', 'PARTIES', 'SPORT EVENTS'];
+    var words = ['CONFERENCES', 'MEETINGS', 'WORKSHOPS', 'SEMINARS', 'CONVENTIONS'];
     var i = 0;
   
     setInterval(function() {
