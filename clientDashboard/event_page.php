@@ -112,15 +112,52 @@ $eventData = mysqli_fetch_assoc($result);
                } else {
                    echo "Error " . $mysqli->error();
                }
-
-               $mysqli->close();
+               
                ?>
     </span>
 </div>
 
 <div class="description">
-    <h2>Event Description</h2>
-    <p><?php echo $eventData['event_description']; ?></p>
+    <h2>Event agenda</h2>
+    <?php
+               if ($result = $mysqli->query("SELECT agenda.*, speakers.Name as speaker_name FROM agenda INNER JOIN speakers ON agenda.SpeakerID = speakers.ID
+                        WHERE agenda.EventID = " . $_GET['EventID'] . " ORDER BY ID")) {
+
+                   if ($result->num_rows > 0) {
+                       echo "<table>";
+                       echo
+                       "
+                                    <thead>
+                                        <tr>
+                                            <th>Start time</th>
+                                            <th>End time</th>
+                                            <th>Activity details</th>
+                                            <th>Speaker</th>
+                                        </tr>
+                                    </thead>
+                                ";
+
+                       while ($row = $result->fetch_object()) {
+                           echo "<tbody>";
+                           echo "<tr>";
+                           echo "<td>" . $row->StartTime . "</td>";
+                           echo "<td>" . $row->EndTime . "</td>";
+                           echo "<td>" . $row->ActivityDetails . "</td>";
+                           echo "<td>" . $row->speaker_name . "</td>";
+                           echo "</tr>";
+                           echo "</tbody>";
+                       }
+
+                       echo "</table>";
+                   } else {
+                       echo "There are no records in the table.";
+                   }
+               } else {
+                   echo "Error " . $mysqli->error();
+               }
+
+               $mysqli->close();
+               ?>
 </div>
 
 
